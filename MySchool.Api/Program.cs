@@ -22,6 +22,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // ── Email service ─────────────────────────────────────────────────────────
 builder.Services.AddScoped<IEmailService, SmtpEmailService>();
+builder.Services.AddScoped<DevSeeder>();
 
 builder.Services.AddControllers();
 
@@ -93,6 +94,13 @@ using (var scope = app.Services.CreateScope())
         var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
         logger.LogInformation("Bootstrap: Principal account created → {Email}", email);
     }
+}
+
+// ── Auto-seed rich demo data in Development ───────────────────────────────
+if (app.Environment.IsDevelopment())
+{
+    using var scope = app.Services.CreateScope();
+    scope.ServiceProvider.GetRequiredService<DevSeeder>().SeedIfEmpty();
 }
 
 app.UseSwagger();
