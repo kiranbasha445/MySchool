@@ -1,0 +1,60 @@
+# .gitignore for MySchool Solution (ASP.NET Core + React/TypeScript)
+
+# --- Backend (MySchool.Api) ---
+MySchool.Api/bin/
+MySchool.Api/obj/
+MySchool.Api/*.db
+MySchool.Api/*.sqlite
+MySchool.Api/*.mdf
+MySchool.Api/*.ldf
+MySchool.Api/*.user
+MySchool.Api/*.vspscc
+MySchool.Api/*.vssscc
+MySchool.Api/.vs/
+MySchool.Api/.vscode/
+MySchool.Api/.DS_Store
+MySchool.Api/appsettings.json
+MySchool.Api/appsettings.*.json
+
+# --- Frontend (myschool-frontend) ---
+node_modules/
+myschool-frontend/dist/
+myschool-frontend/.env
+myschool-frontend/.DS_Store
+myschool-frontend/.vscode/
+
+# --- Global ---
+.DS_Store
+*.swp
+*.swo
+*.tmp
+*.log
+*.vs/
+.vscode/
+.env
+.env.*
+.idea/
+*.iml
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# --- OS generated files ---
+Thumbs.db
+Desktop.ini
+
+# --- Claude AI files ---
+.claude
+
+# --- Others ---
+*.local.json
+*.user
+*.suo
+*.cache
+*.pdb
+*.mdb
+*.bak
+*.backup
+*.orig
+*.rej
+*.sln.docstates
