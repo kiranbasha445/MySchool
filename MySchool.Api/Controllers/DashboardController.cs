@@ -21,19 +21,20 @@ public class DashboardController : ControllerBase
         var totalMarks = _context.Marks.Count();
         var totalAchievements = _context.Achievements.Count();
         var averageScore = _context.Marks.Any()
-            ? Math.Round(_context.Marks.Average(m => m.Score), 1)
+            ? Math.Round(_context.Marks.Average(m => (double)m.Score), 1)
             : 0.0;
 
         var topStudents = _context.Students
             .Include(s => s.Marks)
             .Include(s => s.Class)
             .Where(s => s.Marks.Any())
+            .AsEnumerable()
             .Select(s => new
             {
                 s.Id,
                 s.Name,
-                ClassName = s.Class.Name,
-                Average = Math.Round(s.Marks.Average(m => m.Score), 1)
+                ClassName = s.Class!.Name,
+                Average = Math.Round(s.Marks.Average(m => (double)m.Score), 1)
             })
             .OrderByDescending(s => s.Average)
             .Take(5)
